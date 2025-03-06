@@ -1,4 +1,4 @@
-module github.com/zoc/supabase-orm
+module github.com/rinconrj/supabase-orm
 
 go 1.19
 

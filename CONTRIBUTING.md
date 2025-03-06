@@ -10,14 +10,14 @@ By participating in this project, you agree to abide by the [Code of Conduct](CO
 
 ### Reporting Bugs
 
-- Check if the bug has already been reported in the [Issues](https://github.com/zoc/supabase-orm/issues)
+- Check if the bug has already been reported in the [Issues](https://github.com/rinconrj/supabase-orm/issues)
 - If not, create a new issue with a clear title and description
 - Include steps to reproduce, expected behavior, and actual behavior
 - Include code samples and error messages if applicable
 
 ### Suggesting Enhancements
 
-- Check if the enhancement has already been suggested in the [Issues](https://github.com/zoc/supabase-orm/issues)
+- Check if the enhancement has already been suggested in the [Issues](https://github.com/rinconrj/supabase-orm/issues)
 - If not, create a new issue with a clear title and description
 - Explain why this enhancement would be useful
 
