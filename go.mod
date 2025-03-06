@@ -1,6 +1,6 @@
 module github.com/rinconrj/go-supabase-orm
 
-go 1.19
+go 1.20
 
 require github.com/go-resty/resty/v2 v2.16.5
 
