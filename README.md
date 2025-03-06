@@ -16,7 +16,7 @@ A lightweight ORM-like library for interacting with Supabase's RESTful API from 
 ## Installation
 
 ```bash
-go get github.com/rinconrj/go-supabase-orm
+go get github.com/rinconrj/supabase-orm
 ```
 
 ## Usage
@@ -31,7 +31,7 @@ import (
     "log"
     "time"
 
-    supabaseorm "github.com/rinconrj/go-supabase-orm/src"
+    supabaseorm "github.com/rinconrj/supabase-orm/src"
 )
 
 type User struct {
@@ -108,7 +108,7 @@ import (
     "fmt"
     "log"
 
-    supabaseorm "github.com/rinconrj/go-supabase-orm/src"
+    supabaseorm "github.com/rinconrj/supabase-orm/src"
 )
 
 func main() {

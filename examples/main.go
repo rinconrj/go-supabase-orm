@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	supabaseorm "github.com/rinconrj/go-supabase-orm"
+	supabaseorm "github.com/rinconrj/supabase-orm"
 )
 
 // User represents a user in the database
