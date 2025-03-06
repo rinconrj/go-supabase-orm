@@ -1,4 +1,4 @@
-module github.com/rinconrj/supabase-orm
+module github.com/rinconrj/go-supabase-orm
 
 go 1.19
 

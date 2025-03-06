@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	supabaseorm "github.com/rinconrj/supabase-orm"
+	supabaseorm "github.com/rinconrj/go-supabase-orm"
 )
 
 // RawSQLExample demonstrates how to use raw SQL queries

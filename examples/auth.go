@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	supabaseorm "github.com/rinconrj/supabase-orm"
+	supabaseorm "github.com/rinconrj/go-supabase-orm"
 )
 
 // AuthExample demonstrates how to use the authentication features
