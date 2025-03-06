@@ -62,9 +62,9 @@ func New(baseURL, apiKey string, options ...ClientOption) *Client {
 // Table returns a new query builder for the specified table
 func (c *Client) Table(tableName string) *QueryBuilder {
 	return &QueryBuilder{
-		client:    c,
-		tableName: tableName,
-		method:    http.MethodGet,
+		client: c,
+		table:  tableName,
+		method: http.MethodGet,
 	}
 }
 

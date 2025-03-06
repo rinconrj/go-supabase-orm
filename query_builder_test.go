@@ -1,7 +1,6 @@
-package supabase
+package supabaseorm
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"reflect"
@@ -92,7 +91,7 @@ func TestFilter(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			qb := NewQueryBuilder("users")
-			qb.Filter(tt.column, tt.operator, tt.value)
+			qb.Where(tt.column, tt.operator, tt.value)
 
 			if len(qb.filters) != 1 || qb.filters[0] != tt.expected {
 				t.Errorf("Filter() = %v, want %v", qb.filters, []string{tt.expected})
@@ -227,13 +226,13 @@ func TestRange(t *testing.T) {
 			name:     "range 0-9",
 			from:     0,
 			to:       9,
-			expected: "Range: 0-9",
+			expected: "range=0-9",
 		},
 		{
 			name:     "range 10-19",
 			from:     10,
 			to:       19,
-			expected: "Range: 10-19",
+			expected: "range=10-19",
 		},
 	}
 
@@ -242,9 +241,8 @@ func TestRange(t *testing.T) {
 			qb := NewQueryBuilder("users")
 			qb.Range(tt.from, tt.to)
 
-			expected := fmt.Sprintf("Range: %d-%d", tt.from, tt.to)
-			if qb.rangeQuery != expected {
-				t.Errorf("Range() = %v, want %v", qb.rangeQuery, expected)
+			if qb.rangeQuery != tt.expected {
+				t.Errorf("Range() = %v, want %v", qb.rangeQuery, tt.expected)
 			}
 		})
 	}
@@ -280,7 +278,7 @@ func TestCount(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			qb := NewQueryBuilder("users")
-			qb.Count(tt.exact)
+			qb.Count()
 
 			if qb.countQuery != tt.expected {
 				t.Errorf("Count() = %v, want %v", qb.countQuery, tt.expected)
@@ -325,7 +323,7 @@ func TestBuildURL(t *testing.T) {
 			name: "query with count",
 			setup: func(qb *QueryBuilder) {
 				qb.Select("*")
-				qb.Count(true)
+				qb.Count()
 			},
 			expected: "/users?select=*&count=exact",
 		},
@@ -408,24 +406,13 @@ func TestInsert(t *testing.T) {
 		Age:   25,
 	}
 
-	var createdUser TestUser
-	err := qb.Insert(newUser, &createdUser)
+	err := qb.Insert(newUser)
 
 	if err != nil {
 		t.Errorf("Insert() error = %v", err)
 		return
 	}
 
-	expected := TestUser{
-		ID:    3,
-		Name:  "Alice",
-		Email: "alice@example.com",
-		Age:   25,
-	}
-
-	if !reflect.DeepEqual(createdUser, expected) {
-		t.Errorf("Insert() = %v, want %v", createdUser, expected)
-	}
 }
 
 func TestUpdate(t *testing.T) {
@@ -453,24 +440,13 @@ func TestUpdate(t *testing.T) {
 		"age":  30,
 	}
 
-	var updatedUser TestUser
-	err := qb.Update(updates, &updatedUser)
+	err := qb.Update(updates)
 
 	if err != nil {
 		t.Errorf("Update() error = %v", err)
 		return
 	}
 
-	expected := TestUser{
-		ID:    1,
-		Name:  "John Updated",
-		Email: "john@example.com",
-		Age:   30,
-	}
-
-	if !reflect.DeepEqual(updatedUser, expected) {
-		t.Errorf("Update() = %v, want %v", updatedUser, expected)
-	}
 }
 
 func TestDelete(t *testing.T) {
@@ -493,24 +469,13 @@ func TestDelete(t *testing.T) {
 	qb := client.From("users")
 	qb.Filter("id", "eq", 2)
 
-	var deletedUser TestUser
-	err := qb.Delete(&deletedUser)
+	err := qb.Delete()
 
 	if err != nil {
 		t.Errorf("Delete() error = %v", err)
 		return
 	}
 
-	expected := TestUser{
-		ID:    2,
-		Name:  "Jane",
-		Email: "jane@example.com",
-		Age:   28,
-	}
-
-	if !reflect.DeepEqual(deletedUser, expected) {
-		t.Errorf("Delete() = %v, want %v", deletedUser, expected)
-	}
 }
 
 func TestOr(t *testing.T) {

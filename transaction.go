@@ -20,9 +20,9 @@ func (c *Client) Begin() *Transaction {
 // Table returns a new query builder for the specified table within the transaction
 func (t *Transaction) Table(tableName string) *QueryBuilder {
 	builder := &QueryBuilder{
-		client:    t.client,
-		tableName: tableName,
-		method:    http.MethodGet,
+		client: t.client,
+		table:  tableName,
+		method: http.MethodGet,
 	}
 
 	// Add transaction headers

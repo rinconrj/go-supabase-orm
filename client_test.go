@@ -63,8 +63,8 @@ func TestTable(t *testing.T) {
 	client := New(baseURL, apiKey)
 	queryBuilder := client.Table(tableName)
 
-	if queryBuilder.tableName != tableName {
-		t.Errorf("Expected tableName to be %s, got %s", tableName, queryBuilder.tableName)
+	if queryBuilder.table != tableName {
+		t.Errorf("Expected tableName to be %s, got %s", tableName, queryBuilder.table)
 	}
 
 	if queryBuilder.client != client {
